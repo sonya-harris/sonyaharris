@@ -74,10 +74,10 @@ export function ArtworkTile({ artwork }: { artwork: Artwork }) {
       </div>
 
       <div className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-        <div className="font-display text-[14px] font-bold leading-[1.1] tracking-[-0.03em] text-black transition-colors group-hover:text-[#777777]">
+        <div className="font-display text-[14px] font-semibold leading-[1.1] tracking-[-0.03em] text-foreground transition-colors group-hover:text-muted-foreground">
           {artwork.title}
         </div>
-        <span className="inline-flex items-center bg-[#F2F2F2] font-bold text-[10px] text-[#7F7F7F] tracking-[-0.03em] px-1 py-0.5 inline-block">
+        <span className="inline-flex items-center bg-secondary font-semibold text-[10px] text-muted-foreground tracking-[-0.03em] px-1 py-0.5">
           {label}
         </span>
       </div>
