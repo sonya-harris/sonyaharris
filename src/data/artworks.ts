@@ -64,34 +64,38 @@ function normalizeAssetName(value: string) {
     .replace(/[-_]+/g, " ");
 }
 
+function normalizeUnicode(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
 function resolveAsset(...assetNames: string[]) {
   const assetLookup = Object.fromEntries(
     Object.entries(assetModules).map(([assetPath, assetUrl]) => {
-      const fileName = assetPath.split("/").pop() ?? "";
-      return [fileName.toLowerCase(), assetUrl];
+      const fileName = assetPath.split("/" ).pop() ?? "";
+      return [normalizeUnicode(fileName), assetUrl];
     }),
-  );
+  ) as Record<string, string>;
 
   const fallbackLookup = new Map<string, string>();
   for (const [fileName, assetUrl] of Object.entries(assetLookup)) {
-    fallbackLookup.set(normalizeAssetName(fileName), assetUrl);
+    fallbackLookup.set(normalizeUnicode(normalizeAssetName(fileName)), assetUrl);
   }
 
   for (const assetName of assetNames) {
-    const normalizedName = assetName.toLowerCase();
+    const normalizedName = normalizeUnicode(assetName);
     const resolved = assetLookup[normalizedName];
-    if (resolved) {
-      return resolved;
-    }
+    if (resolved) return resolved;
 
-    const fallback = fallbackLookup.get(normalizeAssetName(assetName));
-    if (fallback) {
-      return fallback;
-    }
+    const fallback = fallbackLookup.get(normalizeUnicode(normalizeAssetName(assetName)));
+    if (fallback) return fallback;
   }
 
-  throw new Error(`Could not resolve asset for ${assetNames.join(", ")}`);
+  return undefined;
 }
+
 
 const mediumBySlug: Record<string, { medium: string; tags: string[] }> = {
   "sunflower-theory": { medium: "Colour pencil", tags: ["Colour pencil"] },
@@ -178,7 +182,10 @@ const singleArtworkConfigs = Object.keys(assetModules)
 // To add a new artwork, drop the image into src/assets and it will appear automatically.
 export const artworks: Artwork[] = [
   ...groupedArtworkConfigs.map((config) => {
-    const images = config.assets.map((assetName) => resolveAsset(assetName));
+    const images = config.assets
+      .map((assetName) => resolveAsset(assetName))
+      .filter((src): src is string => Boolean(src));
+
     const meta = getArtworkMeta(config.slug);
     return createArtwork({
       slug: config.slug,
@@ -186,23 +193,28 @@ export const artworks: Artwork[] = [
       medium: meta.medium,
       tags: meta.tags,
       description: config.description,
-      featuredImage: images[0],
+      featuredImage: images[0] ?? "",
       gallery: images,
     });
   }),
-  ...singleArtworkConfigs.map(({ assetPath, title }) => {
-    const slug = toSlug(title);
-    const meta = getArtworkMeta(slug);
-    return createArtwork({
-      slug,
-      title,
-      medium: meta.medium,
-      tags: meta.tags,
-      featuredImage: assetModules[assetPath],
-      gallery: [assetModules[assetPath]],
-    });
-  }),
+  ...singleArtworkConfigs
+    .map(({ assetPath, title }) => {
+      const slug = toSlug(title);
+      const meta = getArtworkMeta(slug);
+      const src = assetModules[assetPath];
+      if (!src) return null;
+      return createArtwork({
+        slug,
+        title,
+        medium: meta.medium,
+        tags: meta.tags,
+        featuredImage: src,
+        gallery: [src],
+      });
+    })
+    .filter((a): a is Artwork => Boolean(a)),
 ].sort((a, b) => {
+
   const aIndex = homepageOrder.indexOf(a.slug);
   const bIndex = homepageOrder.indexOf(b.slug);
 
