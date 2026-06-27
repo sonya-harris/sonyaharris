@@ -2,6 +2,8 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logoAssetUrl from "@/assets/SH.PNG";
 
+
+
 export function SiteLayout({
   children,
   showAboutLink = true,

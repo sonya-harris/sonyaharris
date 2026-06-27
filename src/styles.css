@@ -151,14 +151,13 @@
     text-rendering: optimizeLegibility;
   }
 
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
 
-.font-display {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-
-body {
+  body {
   font-family: var(--font-sans);
 }
 }
