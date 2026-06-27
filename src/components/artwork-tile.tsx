@@ -57,7 +57,7 @@ export function ArtworkTile({ artwork }: { artwork: Artwork }) {
               type="button"
               onClick={(e) => go(e, -1)}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 z-20 grid h-8 w-8 -translate-y-1/2 place-items-center bg-transparent text-[#777777] transition-colors hover:text-black sm:left-3"
+              className="absolute left-2 top-1/2 z-20 grid h-8 w-8 -translate-y-1/2 place-items-center bg-transparent text-muted-foreground transition-colors hover:text-foreground sm:left-3"
             >
               <Chevron dir="left" />
             </button>
@@ -65,7 +65,7 @@ export function ArtworkTile({ artwork }: { artwork: Artwork }) {
               type="button"
               onClick={(e) => go(e, 1)}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 z-20 grid h-8 w-8 -translate-y-1/2 place-items-center bg-transparent text-[#777777] transition-colors hover:text-black sm:right-3"
+              className="absolute right-2 top-1/2 z-20 grid h-8 w-8 -translate-y-1/2 place-items-center bg-transparent text-muted-foreground transition-colors hover:text-foreground sm:right-3"
             >
               <Chevron dir="right" />
             </button>
