@@ -27,7 +27,7 @@ function Index() {
     <SiteLayout>
       <section className="mt-6 px-4 pt-6 pb-10 sm:px-6 sm:pt-12 sm:pb-12 lg:px-6 lg:pt-16 lg:pb-10">
         <div className="mx-auto max-w-[1600px]">
-          <h1 className="font-display text-[36px] font-bold leading-[0.98] tracking-[-0.05em] text-black sm:text-[36px] lg:text-[36px]">
+          <h1 className="font-display text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-foreground sm:text-[36px] lg:text-[36px]">
             Visual Diary
           </h1>
         </div>
