@@ -78,7 +78,7 @@ function ProjectPage() {
 
             <Link
               to="/"
-              className="mt-10 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[-0.03em] text-black transition-colors hover:text-[#777777]"
+              className="mt-10 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[-0.03em] text-foreground transition-colors hover:text-muted-foreground"
             >
               <span aria-hidden>←</span> Back
             </Link>
