@@ -132,7 +132,7 @@ const groupedArtworkConfigs = [
     slug: "in-flux",
     title: "In Flux",
     assets: ["In Flux A.PNG", "In Flux B.jpg"],
-    description: "Replace this description with your own text for In Flux.",
+    description: "A stoneware clay study exploring form in transition.",
   },
   {
     slug: "jigsaw",
@@ -144,13 +144,13 @@ const groupedArtworkConfigs = [
       "Jigsaw_Watercolour.jpg",
       "Jigsaw_Outline.jpg",
     ],
-    description: "Replace this description with your own text for Jigsaw.",
+    description: "A multi-layered portrait rendered across colour pencil, graphite, fineliner, and watercolour.",
   },
   {
     slug: "sunflower-theory",
     title: "Sunflower Theory",
     assets: ["Sunflower Theory.jpg"],
-    description: "Replace this description with your own text for Sunflower Theory.",
+    description: "A colour pencil study of a sunflower.",
   },
 ];
 
