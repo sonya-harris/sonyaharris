@@ -30,16 +30,16 @@ function Header({ showAboutLink }: { showAboutLink: boolean }) {
           <img src={logoSrc} alt="Sonya Harris" className="h-14 w-auto sm:h-16 lg:h-20" />
         </Link>
         {showAboutLink && (
-          <nav className=" self-start mt-3 flex items-center gap-4 text-[14px] font-bold uppercase tracking-[-0.03em] text-black">
+          <nav className="self-start mt-3 flex items-center gap-4 text-[14px] font-semibold uppercase tracking-[-0.03em] text-foreground">
             {!isHome && (
-              <Link to="/" className="transition-colors hover:text-[#777777]">
+              <Link to="/" className="transition-colors hover:text-muted-foreground">
                 Home
               </Link>
             )}
             <Link
               to="/"
               hash="about"
-              className="transition-colors hover:text-[#777777]"
+              className="transition-colors hover:text-muted-foreground"
             >
               About
             </Link>
