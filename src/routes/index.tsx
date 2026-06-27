@@ -35,8 +35,8 @@ function Index() {
 
       <section className="px-4 sm:px-6 lg:px-7">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
-          {artworks.map((a) => (
-            <ArtworkTile key={a.slug} artwork={a} />
+          {artworks.map((a, i) => (
+            <ArtworkTile key={a.slug} artwork={a} eager={i === 0} />
           ))}
         </div>
       </section>
