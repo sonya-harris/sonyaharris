@@ -109,7 +109,7 @@ function Chevron({ dir }: { dir: "left" | "right" }) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {dir === "center" ? <path d="m15 6-6 6 6 6" /> : <path d="m9 6 6 6-6 6" />}
+      {dir === "left" ? <path d="m15 6-6 6 6 6" /> : <path d="m9 6 6 6-6 6" />}
     </svg>
   );
 }
