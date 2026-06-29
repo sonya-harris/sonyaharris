@@ -56,7 +56,7 @@ function Footer() {
   const [open, setOpen] = useState(false);
   return (
 <footer className="mt-20 h-20 px-4 pb-8 pt-6 sm:px-6 lg:px-7 flex">
-  <div className="flex w-full max-w-[1600px] justify-end items-end mt-8">
+  <div className="flex w-full max-w-[1600px] justify-center items-end mt-8">
     <p className="text-[12px] font-bold uppercase tracking-[-0.03em] text-black">
       © {new Date().getFullYear()} Sonya Harris
     </p>
