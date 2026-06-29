@@ -1,10 +1,35 @@
+type AssetModule = string | { url?: string };
+
+const rawAssetModules = import.meta.glob("/src/assets/*", {
+  eager: true,
+  import: "default",
+}) as Record<string, AssetModule>;
+
+function isImageAssetPath(assetPath: string) {
+  return /\.(jpe?g|png|webp|svg)$/i.test(assetPath);
+}
+
+function isAssetPointerPath(assetPath: string) {
+  return /\.(jpe?g|png|webp|svg)\.asset\.json$/i.test(assetPath);
+}
+
+function getAssetUrl(assetModule: AssetModule) {
+  return typeof assetModule === "string" ? assetModule : assetModule.url;
+}
+
+function getComparableAssetPath(assetPath: string) {
+  return assetPath.replace(/\.asset\.json$/i, "");
+}
+
 const assetModules = Object.fromEntries(
-  Object.entries(
-    import.meta.glob("/src/assets/*", {
-      eager: true,
-      import: "default",
-    }) as Record<string, string>,
-  ).filter(([assetPath]) => /\.(jpe?g|png|webp|svg)$/i.test(assetPath)),
+  Object.entries(rawAssetModules).flatMap(([assetPath, assetModule]) => {
+    if (!isImageAssetPath(assetPath) && !isAssetPointerPath(assetPath)) return [];
+
+    const assetUrl = getAssetUrl(assetModule);
+    if (!assetUrl) return [];
+
+    return [[getComparableAssetPath(assetPath), assetUrl]];
+  }),
 ) as Record<string, string>;
 
 // The logo is imported separately in the layout component and is not part of the artwork list.
