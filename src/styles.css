@@ -2,7 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -158,8 +157,8 @@
   }
 
   body {
-  font-family: var(--font-sans);
-}
+    font-family: var(--font-sans);
+  }
 }
 
 @utility fade-in {
@@ -174,4 +173,3 @@
     opacity: 1;
   }
 }
-

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { ArtworkTile } from "@/components/artwork-tile";
 import { artworks } from "@/data/artworks";
@@ -9,8 +10,7 @@ export const Route = createFileRoute("/")({
       { title: "Sonya Harris — Visual Diary" },
       {
         name: "description",
-        content:
-          "",
+        content: "",
       },
       { property: "og:title", content: "Sonya Harris — Visual Diary" },
       {
@@ -23,6 +23,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const LOAD_STEP = 9;
+  const INITIAL_VISIBLE_COUNT = 9;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+
   return (
     <SiteLayout>
       <section className="mt-6 px-4 pt-6 pb-10 sm:px-6 sm:pt-12 sm:pb-12 lg:px-6 lg:pt-16 lg:pb-10">
@@ -34,10 +38,24 @@ function Index() {
       </section>
 
       <section className="px-4 sm:px-6 lg:px-7">
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
-          {artworks.map((a, i) => (
-            <ArtworkTile key={a.slug} artwork={a} eager={i === 0} />
-          ))}
+        <div className="mx-auto">
+          <div className="grid max-w-[1600px] grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
+            {artworks.slice(0, visibleCount).map((a, i) => (
+              <ArtworkTile key={a.slug} artwork={a} eager={i === 0} />
+            ))}
+          </div>
+
+          {visibleCount < artworks.length && (
+            <div className="mt-12 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((n) => n + LOAD_STEP)}
+                className="border-2 border-black bg-white px-5 py-2 text-[14px] font-bold uppercase tracking-[-0.03em] text-black transition-colors hover:bg-white"
+              >
+                Load more
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -48,10 +66,7 @@ function Index() {
 
 function AboutSection() {
   return (
-    <section
-      id="about"
-      className="scroll-mt-10 px-4 pt-24 sm:px-6 sm:pt-32 lg:px-7"
-    >
+    <section id="about" className="scroll-mt-10 px-4 pt-24 sm:px-6 sm:pt-32 lg:px-7">
       <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-2 md:gap-16">
         <div className="justify-self-end aspect-square bg-secondary md:max-h-[300px] md:max-w-[300px]" />
         <div>
@@ -59,7 +74,7 @@ function AboutSection() {
             About
           </p>
           <h2 className="mt-5 font-display text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-foreground sm:text-[32px]">
-            Hello, I'm Sonya.
+            Hello, I'm Son.
           </h2>
           <p className="mt-5 text-[24px] tracking-[-0.03em] font-semibold leading-[1.25] text-muted-foreground">
             Welcome to my visual diary.
@@ -72,7 +87,7 @@ function AboutSection() {
             <Row>Cert III Visual Art (current)</Row>
           </dl>
 
-          <p className="mt-5 font-display text-[14px] font-semibold tracking-[-0.03em] text-foreground">
+          <p className="mt-5 font-display text-[14px] font-semibold tracking-[-0.03em] text-muted-foreground">
             Currently based in Brisbane / Magandjin
           </p>
           <div className="relative">

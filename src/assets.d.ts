@@ -46,5 +46,3 @@ declare module "*.asset.json" {
   };
   export default asset;
 }
-
-

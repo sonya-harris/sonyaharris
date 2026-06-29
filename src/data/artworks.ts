@@ -67,7 +67,10 @@ function createArtwork(
 
 function toArtworkTitle(assetPath: string) {
   const fileName = assetPath.split("/").pop() ?? assetPath;
-  return fileName.replace(/\.[^/.]+$/, "").replace(/[_-]+/g, " ").trim();
+  return fileName
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .trim();
 }
 
 function toSlug(value: string) {
@@ -99,7 +102,7 @@ function normalizeUnicode(value: string) {
 function resolveAsset(...assetNames: string[]) {
   const assetLookup = Object.fromEntries(
     Object.entries(assetModules).map(([assetPath, assetUrl]) => {
-      const fileName = assetPath.split("/" ).pop() ?? "";
+      const fileName = assetPath.split("/").pop() ?? "";
       return [normalizeUnicode(fileName), assetUrl];
     }),
   ) as Record<string, string>;
@@ -121,18 +124,18 @@ function resolveAsset(...assetNames: string[]) {
   return undefined;
 }
 
-
 const mediumBySlug: Record<string, { medium: string; tags: string[] }> = {
   "sunflower-theory": { medium: "Colour pencil", tags: ["Colour pencil"] },
   lineage: { medium: "Colour pencil", tags: ["Colour pencil"] },
   "egoic-lotus": { medium: "Colour pencil", tags: ["Colour pencil"] },
-serotonin: { medium: "Colour pencil", tags: ["Colour pencil"] },
-   jigsaw: {
+  serotonin: { medium: "Colour pencil", tags: ["Colour pencil"] },
+  jigsaw: {
     medium: "Colour pencil / Graphite pencil / Watercolour paint / Fineliner",
-    tags: ["Watercolour paint", "Colour pencil", "Graphite pencil", "Fineliner"],},
-    harleycat: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
-   conch: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
-   "champs-elysees": { medium: "Graphite pencil", tags: ["Graphite pencil"] },
+    tags: ["Watercolour paint", "Colour pencil", "Graphite pencil", "Fineliner"],
+  },
+  harleycat: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
+  conch: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
+  "champs-elysees": { medium: "Graphite pencil", tags: ["Graphite pencil"] },
   "fka-twigs": { medium: "Graphite pencil", tags: ["Graphite pencil"] },
   "the-grand-budapest-hotel": { medium: "Graphite pencil", tags: ["Graphite pencil"] },
   "sezane-cups": { medium: "Graphite pencil", tags: ["Graphite pencil"] },
@@ -146,17 +149,39 @@ serotonin: { medium: "Colour pencil", tags: ["Colour pencil"] },
   crown: { medium: "Photogram", tags: ["Photogram"] },
   boxes: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
   calendar: { medium: "Colour pencil", tags: ["Colour pencil"] },
-grid: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
+  grid: { medium: "Graphite pencil", tags: ["Graphite pencil"] },
 };
 
 function getArtworkMeta(slug: string) {
   return mediumBySlug[slug] ?? { medium: "", tags: [] };
 }
 
-const homepageOrder = ["sunflower-theory", "lineage", "egoic-lotus", "serotonin", "jigsaw", "harleycat", "conch", "champs-elysees", "fka-twigs", "the-grand-budapest-hotel", "sezane-cups", "limoges-porcelain", "abbey-road", "in-flux", "sheer", "bougainvillea", "brown-snake", "embrace", "crown", "boxes", "calendar", "depth"];
+const homepageOrder = [
+  "sunflower-theory",
+  "lineage",
+  "egoic-lotus",
+  "serotonin",
+  "jigsaw",
+  "harleycat",
+  "conch",
+  "champs-elysees",
+  "fka-twigs",
+  "the-grand-budapest-hotel",
+  "sezane-cups",
+  "limoges-porcelain",
+  "abbey-road",
+  "in-flux",
+  "sheer",
+  "bougainvillea",
+  "brown-snake",
+  "embrace",
+  "crown",
+  "boxes",
+  "calendar",
+  "depth",
+];
 
 const groupedArtworkConfigs = [
-  
   {
     slug: "in-flux",
     title: "In Flux",
@@ -173,7 +198,8 @@ const groupedArtworkConfigs = [
       "Jigsaw_Watercolour.jpg",
       "Jigsaw_Outline.jpg",
     ],
-    description: "A multi-layered portrait rendered across colour pencil, graphite, fineliner, and watercolour.",
+    description:
+      "A multi-layered portrait rendered across colour pencil, graphite, fineliner, and watercolour.",
   },
   {
     slug: "sunflower-theory",
@@ -186,12 +212,7 @@ const groupedArtworkConfigs = [
 const singleArtworkConfigs = Object.keys(assetModules)
   .filter((assetPath) => {
     const fileName = (assetPath.split("/").pop() ?? "").toLowerCase();
-    return ![
-      "sh.png",
-      "sh.PNG",
-      "sh-png",
-      "sh-png.png",
-    ].includes(fileName);
+    return !["sh.png", "sh.PNG", "sh-png", "sh-png.png"].includes(fileName);
   })
   .map((assetPath) => ({
     assetPath,
@@ -202,7 +223,6 @@ const singleArtworkConfigs = Object.keys(assetModules)
       config.assets.some((assetName) => assetPath.endsWith(assetName)),
     );
   });
-
 
 // To add a new artwork, drop the image into src/assets and it will appear automatically.
 export const artworks: Artwork[] = [
@@ -239,7 +259,6 @@ export const artworks: Artwork[] = [
     })
     .filter((a): a is Artwork => Boolean(a)),
 ].sort((a, b) => {
-
   const aIndex = homepageOrder.indexOf(a.slug);
   const bIndex = homepageOrder.indexOf(b.slug);
 
@@ -255,8 +274,7 @@ export const artworks: Artwork[] = [
   return aIndex - bIndex;
 });
 
-export const getArtwork = (slug: string) =>
-  artworks.find((a) => a.slug === slug);
+export const getArtwork = (slug: string) => artworks.find((a) => a.slug === slug);
 
 export const getRelated = (slug: string, count = 3) =>
   artworks.filter((a) => a.slug !== slug).slice(0, count);

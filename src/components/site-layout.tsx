@@ -2,8 +2,6 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logoAssetUrl from "@/assets/SH.PNG";
 
-
-
 export function SiteLayout({
   children,
   showAboutLink = true,
@@ -38,11 +36,7 @@ function Header({ showAboutLink }: { showAboutLink: boolean }) {
                 Home
               </Link>
             )}
-            <Link
-              to="/"
-              hash="about"
-              className="transition-colors hover:text-muted-foreground"
-            >
+            <Link to="/" hash="about" className="transition-colors hover:text-muted-foreground">
               About
             </Link>
           </nav>
@@ -55,12 +49,12 @@ function Header({ showAboutLink }: { showAboutLink: boolean }) {
 function Footer() {
   const [open, setOpen] = useState(false);
   return (
-<footer className="mt-20 h-20 px-4 pb-8 pt-6 sm:px-6 lg:px-7 flex">
-  <div className="flex w-full max-w-[1600px] justify-center items-end mt-8">
-    <p className="text-[12px] font-bold uppercase tracking-[-0.03em] text-black">
-      © {new Date().getFullYear()} Sonya Harris
-    </p>
-  </div>
-</footer>
+    <footer className="mt-20 h-20 px-4 pb-8 pt-6 sm:px-6 lg:px-7 flex">
+      <div className="flex w-full max-w-[1600px] justify-center items-end mt-8">
+        <p className="text-[12px] font-bold uppercase tracking-[-0.03em] text-black">
+          © {new Date().getFullYear()} Sonya Harris
+        </p>
+      </div>
+    </footer>
   );
 }

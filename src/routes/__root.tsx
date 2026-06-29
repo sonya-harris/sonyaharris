@@ -91,11 +91,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Sonya Harris" },
-      { name: "description", content: "Your Website Builder creates custom websites from your specifications." },
-      { property: "og:description", content: "Your Website Builder creates custom websites from your specifications." },
-      { name: "twitter:description", content: "Your Website Builder creates custom websites from your specifications." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077e8f42-cd0c-4a82-922c-8eff68b9bfd7/id-preview-8c789594--439cb3fd-ee63-482c-9224-d3bdb947ce6c.lovable.app-1782532176807.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077e8f42-cd0c-4a82-922c-8eff68b9bfd7/id-preview-8c789594--439cb3fd-ee63-482c-9224-d3bdb947ce6c.lovable.app-1782532176807.png" },
+      {
+        name: "description",
+        content: "Your Website Builder creates custom websites from your specifications.",
+      },
+      {
+        property: "og:description",
+        content: "Your Website Builder creates custom websites from your specifications.",
+      },
+      {
+        name: "twitter:description",
+        content: "Your Website Builder creates custom websites from your specifications.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077e8f42-cd0c-4a82-922c-8eff68b9bfd7/id-preview-8c789594--439cb3fd-ee63-482c-9224-d3bdb947ce6c.lovable.app-1782532176807.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077e8f42-cd0c-4a82-922c-8eff68b9bfd7/id-preview-8c789594--439cb3fd-ee63-482c-9224-d3bdb947ce6c.lovable.app-1782532176807.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

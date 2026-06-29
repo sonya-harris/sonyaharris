@@ -2,13 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import type { Artwork } from "@/data/artworks";
 
-export function ArtworkTile({
-  artwork,
-  eager = false,
-}: {
-  artwork: Artwork;
-  eager?: boolean;
-}) {
+export function ArtworkTile({ artwork, eager = false }: { artwork: Artwork; eager?: boolean }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const images = [
@@ -17,7 +11,6 @@ export function ArtworkTile({
   ];
   const hasMultiple = images.length > 1;
   const label = artwork.tags?.join(", ") || artwork.medium || artwork.category;
-
 
   const openArtwork = () => {
     navigate({ to: "/projects/$slug", params: { slug: artwork.slug } });

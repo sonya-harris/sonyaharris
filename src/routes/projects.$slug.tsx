@@ -27,9 +27,7 @@ export const Route = createFileRoute("/projects/$slug")({
   component: ProjectPage,
   errorComponent: ({ error }) => (
     <SiteLayout>
-      <div className="px-6 py-20 text-center text-sm text-muted-foreground">
-        {error.message}
-      </div>
+      <div className="px-6 py-20 text-center text-sm text-muted-foreground">{error.message}</div>
     </SiteLayout>
   ),
   notFoundComponent: () => (
@@ -105,7 +103,6 @@ function ProjectPage() {
             ))}
           </div>
         </div>
-
       </article>
 
       {lightbox && (
