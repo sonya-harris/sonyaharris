@@ -49,8 +49,13 @@ function Index() {
             <div className="mt-12 flex justify-center">
               <button
                 type="button"
-                onClick={() => setVisibleCount((n) => n + LOAD_STEP)}
+                onClick={() =>
+  setVisibleCount((n) =>
+    n + (window.innerWidth < 768 ? 10 : 12)
+  )
+}
                 className="border-2 border-black bg-white px-5 py-2 text-[14px] font-bold uppercase tracking-[-0.03em] text-black transition-colors hover:bg-white"
+                
               >
                 Load more
               </button>
