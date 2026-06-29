@@ -24,8 +24,8 @@ function Header({ showAboutLink }: { showAboutLink: boolean }) {
   const isHome = location.pathname === "/";
 
   return (
-    <header className="px-4 pt-6 pb-2 sm:px-6 sm:pt-3 lg:px-7">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between">
+    <header className="pt-6 pb-2">
+      <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-7">
         <Link to="/" className="block" aria-label="Home">
           <img src={logoSrc} alt="Sonya Harris" className="h-14 w-auto sm:h-16 lg:h-20" />
         </Link>
@@ -49,8 +49,8 @@ function Header({ showAboutLink }: { showAboutLink: boolean }) {
 function Footer() {
   const [open, setOpen] = useState(false);
   return (
-    <footer className="mt-20 h-20 px-4 pb-8 pt-6 sm:px-6 lg:px-7 flex">
-      <div className="flex w-full max-w-[1600px] justify-center items-end mt-8">
+    <footer className="mt-20 h-20 pb-8 pt-6 flex">
+      <div className="flex w-full justify-center items-end mt-8">
         <p className="text-[12px] font-bold uppercase tracking-[-0.03em] text-black">
           © {new Date().getFullYear()} Sonya Harris
         </p>

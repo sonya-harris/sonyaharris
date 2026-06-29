@@ -49,7 +49,7 @@ function ProjectPage() {
   return (
     <SiteLayout>
       <article className="mt-6 px-4 sm:px-6 lg:px-7">
-        <div className="mx-auto grid max-w-[1400px] gap-12 pt-6 sm:pt-8 md:grid-cols-[280px_minmax(0,1fr)] md:gap-16 lg:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="w-full grid gap-12 pt-6 sm:pt-8 md:grid-cols-[280px_minmax(0,1fr)] md:gap-16 lg:grid-cols-[320px_minmax(0,1fr)]">
           {/* Meta column */}
           <aside className="md:sticky md:top-10 md:self-start">
             <h1 className="font-display text-[36px] font-semibold leading-[1] tracking-[-0.055em] text-foreground sm:text-[36px]">

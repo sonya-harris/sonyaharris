@@ -29,17 +29,17 @@ function Index() {
 
   return (
     <SiteLayout>
-      <section className="mt-6 px-4 pt-6 pb-10 sm:px-6 sm:pt-12 sm:pb-12 lg:px-6 lg:pt-16 lg:pb-10">
-        <div className="mx-auto max-w-[1600px]">
+      <section className="mt-6 px-4 pt-6 pb-10 sm:px-6 lg:px-7 w-full">
+        <div>
           <h1 className="font-display text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-foreground sm:text-[36px] lg:text-[36px]">
             Visual Diary
           </h1>
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-7">
-        <div className="mx-auto">
-          <div className="grid max-w-[1600px] grid-cols-2 gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
+      <section className="px-4 w-full sm:px-6 lg:px-7">
+        <div className="w-full">
+          <div className="grid w-full grid-cols-2 justify-center gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
             {artworks.slice(0, visibleCount).map((a, i) => (
               <ArtworkTile key={a.slug} artwork={a} eager={i === 0} />
             ))}
@@ -67,7 +67,7 @@ function Index() {
 function AboutSection() {
   return (
     <section id="about" className="scroll-mt-10 px-4 pt-24 sm:px-6 sm:pt-32 lg:px-7">
-      <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-2 md:gap-16">
+      <div className="w-full grid gap-12 md:grid-cols-2 md:gap-16">
         <div className="justify-self-end aspect-square bg-secondary md:max-h-[300px] md:max-w-[300px]" />
         <div>
           <p className="font-display text-[12px] font-semibold uppercase tracking-[-0.03em] text-foreground">
