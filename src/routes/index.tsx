@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { ArtworkTile } from "@/components/artwork-tile";
 import { artworks } from "@/data/artworks";
@@ -23,10 +22,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const LOAD_STEP = 9;
-  const INITIAL_VISIBLE_COUNT = 9;
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
-
   return (
     <SiteLayout>
       <section className="mt-6 px-4 pt-6 pb-10 sm:px-6 lg:px-7 w-full">
@@ -40,27 +35,10 @@ function Index() {
       <section className="px-4 w-full sm:px-6 lg:px-7">
         <div className="w-full">
           <div className="grid w-full grid-cols-2 justify-center gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-16">
-            {artworks.slice(0, visibleCount).map((a, i) => (
+            {artworks.map((a, i) => (
               <ArtworkTile key={a.slug} artwork={a} eager={i === 0} />
             ))}
           </div>
-
-          {visibleCount < artworks.length && (
-            <div className="mt-12 flex justify-center">
-              <button
-                type="button"
-                onClick={() =>
-  setVisibleCount((n) =>
-    n + (window.innerWidth < 768 ? 10 : 12)
-  )
-}
-                className="border-2 border-black bg-white px-5 py-2 text-[14px] font-bold uppercase tracking-[-0.03em] text-black transition-colors hover:bg-white"
-                
-              >
-                Load more
-              </button>
-            </div>
-          )}
         </div>
       </section>
 
